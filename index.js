@@ -1,23 +1,6 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-import cors from 'cors'; 
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import postRoutes from './routes/posts.js';
+import App from './App';
 
-const app = express();
-
-app.use('/posts',postRoutes);
-
-app.use(bodyParser.json({limit: "30mb", extended: true}));
-app.use(bodyParser.json({limit: "30mb", extended: true}));
-app.use(cors());
-
-const CONNECTION_URL = 'mongodb+srv://anmysto:enormouslibra42@cluster0.imgtl.mongodb.net/<dbname>?retryWrites=true&w=majority';
-const PORT = process.env.PORT || 5000;
-
-mongoose.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true})
-   .then(() => app.listen(PORT,() => console.log(`Server running on port: ${PORT}`)))
-   .catch((error) => console.log(error.message));
-
-mongoose.set('useFindAndModify' , false);
+ReactDOM.render(<App />,document.getElementById('root'));
